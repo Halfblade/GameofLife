@@ -218,6 +218,13 @@ namespace GameofLife
 
         private void modalToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Modal_Dialog dlg = new Modal_Dialog();
+
+
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                int x = 0;
+            }
 
         }
     }
