@@ -267,19 +267,21 @@
             this.colorToolStripMenuItem,
             this.modalToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(109, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
             // 
             // colorToolStripMenuItem
             // 
             this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
-            this.colorToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
-            this.colorToolStripMenuItem.Text = "Color";
+            this.colorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.colorToolStripMenuItem.Text = "Grid Color";
+            this.colorToolStripMenuItem.Click += new System.EventHandler(this.colorToolStripMenuItem_Click);
             // 
             // modalToolStripMenuItem
             // 
             this.modalToolStripMenuItem.Name = "modalToolStripMenuItem";
-            this.modalToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.modalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.modalToolStripMenuItem.Text = "Modal";
+            this.modalToolStripMenuItem.Click += new System.EventHandler(this.modalToolStripMenuItem_Click);
             // 
             // graphicsPanel1
             // 

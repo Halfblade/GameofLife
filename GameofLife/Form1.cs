@@ -201,5 +201,24 @@ namespace GameofLife
 
             return count;
         }
+
+        private void colorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog dlg = new ColorDialog();
+
+            dlg.Color = gridColor;
+
+
+            if(DialogResult.OK == dlg.ShowDialog())
+            {
+                gridColor = dlg.Color;
+                graphicsPanel1.Invalidate();
+            }
+        }
+
+        private void modalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
