@@ -40,7 +40,13 @@ namespace GameofLife
         // Calculate the next generation of cells
         private void NextGeneration()
         {
+            for (int i = 0; i < universe.GetLength(1); i++)
+            {
+                for (int j = 0; j < universe.GetLength(0); j++)
+                {
 
+                }
+            }
 
             // Increment generation count
             generations++;
@@ -153,7 +159,7 @@ namespace GameofLife
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-
+            timer.Enabled = false;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
