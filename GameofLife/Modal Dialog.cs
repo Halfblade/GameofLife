@@ -16,5 +16,18 @@ namespace GameofLife
         {
             InitializeComponent();
         }
+
+        public int Number 
+        {
+            get
+            {
+                return (int)numericUpDown1.Value;
+            }
+
+            set
+            {
+                numericUpDown1.Value = value;
+            }
+        }
     }
 }
