@@ -13,8 +13,8 @@ namespace GameofLife
     public partial class Form1 : Form
     {
         // The universe array
-        bool[,] universe = new bool[5, 5];
-        bool[,] sratchpad = new bool[5, 5];
+        bool[,] universe = new bool[10, 10];
+        bool[,] sratchpad = new bool[10, 10];
         
 
         // Drawing colors
@@ -52,16 +52,17 @@ namespace GameofLife
 
                    if (universe[j, i] == true)
                     {
-                        if (counting < 2 || counting > 3)
+                        if (counting < 2 )
                         {
                             sratchpad[j, i] = false;
                         }
-                        else
+                        if (counting > 3)
                         {
-                            if (counting == 2 || counting == 3)
-                            {
-                                sratchpad[j, i] = true;
-                            }
+                            sratchpad[j, i] = false;
+                        }
+                        if (counting == 2 || counting == 3)
+                        {
+                            sratchpad[j, i] = true;
                         }
                     }
                     else
@@ -86,6 +87,9 @@ namespace GameofLife
 
             // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+
+
+            graphicsPanel1.Invalidate();
         }
 
         // The event called by the timer every Interval milliseconds.
@@ -117,10 +121,22 @@ namespace GameofLife
                 {
                     // A rectangle to represent each cell in pixels
                     RectangleF cellRect = Rectangle.Empty;
-                    cellRect.X = x * cellWidth;
-                    cellRect.Y = y * cellHeight;
+                    cellRect.X = (x * cellWidth);
+                    cellRect.Y = (y * cellHeight);
                     cellRect.Width = cellWidth;
                     cellRect.Height = cellHeight;
+
+
+                    Font font = new Font("Arial", 20f);
+
+                    StringFormat stringFormat = new StringFormat();
+                    stringFormat.Alignment = StringAlignment.Center;
+                    stringFormat.LineAlignment = StringAlignment.Center;
+
+                    Rectangle rect = new Rectangle(0, 0, 100, 100);
+                    int neighbors = CountingNeighbors(x, y);
+
+
 
                     // Fill the cell with a brush if alive
                     if (universe[x, y] == true)
@@ -130,6 +146,7 @@ namespace GameofLife
 
                     // Outline the cell with a pen
                     e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+                    e.Graphics.DrawString(neighbors.ToString(), graphicsPanel1.Font, Brushes.Black, cellRect.X, cellRect.Y);
                 }
             }
 
@@ -182,6 +199,7 @@ namespace GameofLife
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
+            NextGeneration();
 
         }
 
@@ -211,14 +229,10 @@ namespace GameofLife
                 for (int j = -1; j < 2; j++)
                 {
                     // check if out of bounds universe[5,5]
-                    if (x + i < 0 && x + i > universe.GetLength(0) && y + j < 0 && y + j > universe.GetLength(1))
-                    {
-
-                    }
-                    else
+                    if ((x + i >= 0 && x + i < universe.GetLength(0))&& (y + j >= 0 && y + j < universe.GetLength(1)))
                     {
                         // check if its the same universe position [x,y] = [i, j]
-                        if (x + i != 0 && y + j != 0)
+                        if ( i != 0 || j != 0)
                         {
                             // check if cell is Alive or Dead
                             if (universe[x + i, y + j] == true)
@@ -229,6 +243,8 @@ namespace GameofLife
                         }
 
                     }
+                   
+                    
                 }
             }
 
