@@ -90,7 +90,7 @@ namespace GameofLife
 
             // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
-            toolStripStatusLabel1.Text = "Cells Alive =" + counting.ToString();
+            
 
             graphicsPanel1.Invalidate();
         }
@@ -196,7 +196,10 @@ namespace GameofLife
                     universe[x, y] = false;
                 }
             }
-                     graphicsPanel1.Invalidate();
+            generations = 0;
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            toolStripStatusLabel1.Text = "Cells Alive = " + 0;
+            graphicsPanel1.Invalidate();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -251,6 +254,19 @@ namespace GameofLife
                     
                 }
             }
+
+            int isAlive = 0;
+            for (int yPos = 0; yPos < universe.GetLength(0); yPos++)
+            {
+                for (int xPos = 0; xPos < universe.GetLength(1); xPos++)
+                {
+                    if (universe[xPos, yPos] == true)
+                    {
+                        isAlive++;
+                    }
+                }
+            }
+            toolStripStatusLabel1.Text = "Cells Alive = " + isAlive.ToString();
             //if greater than y going up or x going right set pos to =0;
             // if less than y going down or x going left set pos to universe - 1;
             return count;
