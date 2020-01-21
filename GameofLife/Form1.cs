@@ -35,7 +35,7 @@ namespace GameofLife
             // Setup the timer
             timer.Interval = 100; // milliseconds
             timer.Tick += Timer_Tick;
-            timer.Enabled = false; // start timer running
+            timer.Enabled = false; // start timer on stop
 
             //graphicsPanel1.BackColor = Properties.Settings.Default.GraphicsBackPanel;
         }
@@ -79,7 +79,7 @@ namespace GameofLife
                 }
             }
 
-
+            //swaping universe to sratchpad
             bool[,] temp = universe;
             universe = sratchpad;
             sratchpad = temp;
@@ -90,7 +90,7 @@ namespace GameofLife
 
             // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
-
+            toolStripStatusLabel1.Text = "Cells Alive =" + counting.ToString();
 
             graphicsPanel1.Invalidate();
         }
@@ -486,6 +486,28 @@ namespace GameofLife
                 reader.Close();
             }
 
+        }
+
+        private void randomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Random rand = new Random();
+            for (int i = 0; i < universe.GetLength(1); i++)
+            {
+                for(int j = 0; j < universe.GetLength(0); j++)
+                {
+                    int newRandomAliveorDead = rand.Next();
+                    if(newRandomAliveorDead % 2 == 0)
+                    {
+                        universe[j, i] = true;
+                    }
+                    else
+                    {
+                        universe[j, i] = false;
+                    }
+
+                }
+            }
+            graphicsPanel1.Invalidate();
         }
     }
 }
