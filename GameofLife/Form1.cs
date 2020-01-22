@@ -290,14 +290,23 @@ namespace GameofLife
         {
             Modal_Dialog dlg = new Modal_Dialog();
 
-
+            dlg.NumberHeight = universe.GetLength(1);
+            dlg.NumberWidth = universe.GetLength(0);
+            int x = 0;
+            int y = 0;
 
             dlg.Number = timer.Interval;
 
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                timer.Interval = dlg.Number;
+                x = dlg.NumberWidth;
+                y = dlg.NumberHeight;
+                bool[,] newuniverse = new bool[x, y];
+                universe = newuniverse;
+                sratchpad = newuniverse;
 
+                timer.Interval = dlg.Number;
+                
                 graphicsPanel1.Invalidate();
             }
 

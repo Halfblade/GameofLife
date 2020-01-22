@@ -29,5 +29,43 @@ namespace GameofLife
                 numericUpDown1.Value = value;
             }
         }
+
+
+        public int NumberHeight 
+        {
+
+            get
+            {
+                return (int)numericUpDown2.Value;
+            }
+
+
+
+            set
+            {
+                numericUpDown2.Value = value;
+            }
+             
+        
+        }
+
+
+        public int NumberWidth
+        {
+
+            get
+            {
+                return (int)numericUpDown3.Value;
+            }
+
+
+
+            set
+            {
+                numericUpDown3.Value = value;
+            }
+
+
+        }
     }
 }
