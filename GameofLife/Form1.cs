@@ -37,7 +37,7 @@ namespace GameofLife
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer on stop
 
-            //graphicsPanel1.BackColor = Properties.Settings.Default.GraphicsBackPanel;
+            graphicsPanel1.BackColor = Properties.Settings.Default.GraphicsBackPanel;
         }
 
         // Calculate the next generation of cells
@@ -361,18 +361,21 @@ namespace GameofLife
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //Properties.Settings.Default.GraphicsBackPanel = graphicsPanel1.BackColor;
-            //Properties.Settings.Default.Save();
+            Properties.Settings.Default.GraphicsBackPanel = graphicsPanel1.BackColor;
+            Properties.Settings.Default.Save();
         }
 
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reset();
+            
+            
         }
 
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reload();
+            
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -533,6 +536,20 @@ namespace GameofLife
                 }
             }
             graphicsPanel1.Invalidate();
+        }
+
+        private void backColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog dlg = new ColorDialog();
+
+            dlg.Color = graphicsPanel1.BackColor;
+
+
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                graphicsPanel1.BackColor = dlg.Color;
+                graphicsPanel1.Invalidate();
+            }
         }
     }
 }

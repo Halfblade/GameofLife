@@ -25,13 +25,61 @@ namespace GameofLife.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Window")]
         public global::System.Drawing.Color GraphicsBackPanel {
             get {
                 return ((global::System.Drawing.Color)(this["GraphicsBackPanel"]));
             }
             set {
                 this["GraphicsBackPanel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color GraphicsGridColor {
+            get {
+                return ((global::System.Drawing.Color)(this["GraphicsGridColor"]));
+            }
+            set {
+                this["GraphicsGridColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Window")]
+        public global::System.Drawing.Color GraphicsCellColor {
+            get {
+                return ((global::System.Drawing.Color)(this["GraphicsCellColor"]));
+            }
+            set {
+                this["GraphicsCellColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int Height {
+            get {
+                return ((int)(this["Height"]));
+            }
+            set {
+                this["Height"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int Setting1 {
+            get {
+                return ((int)(this["Setting1"]));
+            }
+            set {
+                this["Setting1"] = value;
             }
         }
     }
