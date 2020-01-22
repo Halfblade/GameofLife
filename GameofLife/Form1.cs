@@ -368,6 +368,7 @@ namespace GameofLife
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reset();
+            graphicsPanel1.BackColor = Properties.Settings.Default.GraphicsBackPanel;
             
             
         }
