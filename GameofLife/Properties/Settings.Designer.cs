@@ -49,7 +49,7 @@ namespace GameofLife.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Window")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Gray")]
         public global::System.Drawing.Color GraphicsCellColor {
             get {
                 return ((global::System.Drawing.Color)(this["GraphicsCellColor"]));

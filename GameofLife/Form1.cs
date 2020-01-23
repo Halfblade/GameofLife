@@ -38,6 +38,8 @@ namespace GameofLife
             timer.Enabled = false; // start timer on stop
 
             graphicsPanel1.BackColor = Properties.Settings.Default.GraphicsBackPanel;
+            gridColor = Properties.Settings.Default.GraphicsGridColor;
+            cellColor = Properties.Settings.Default.GraphicsCellColor;
         }
 
         // Calculate the next generation of cells
@@ -362,6 +364,8 @@ namespace GameofLife
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             Properties.Settings.Default.GraphicsBackPanel = graphicsPanel1.BackColor;
+            Properties.Settings.Default.GraphicsGridColor = gridColor;
+            Properties.Settings.Default.GraphicsCellColor = cellColor;
             Properties.Settings.Default.Save();
         }
 
@@ -369,6 +373,8 @@ namespace GameofLife
         {
             Properties.Settings.Default.Reset();
             graphicsPanel1.BackColor = Properties.Settings.Default.GraphicsBackPanel;
+            gridColor = Properties.Settings.Default.GraphicsGridColor;
+            cellColor = Properties.Settings.Default.GraphicsCellColor;
             
             
         }
@@ -376,6 +382,7 @@ namespace GameofLife
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reload();
+            
             
         }
 
