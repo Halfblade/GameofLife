@@ -14,7 +14,7 @@
     <Setting Name="Height" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
-    <Setting Name="Setting1" Type="System.Int32" Scope="User">
+    <Setting Name="Width" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
   </Settings>

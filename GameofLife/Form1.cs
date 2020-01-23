@@ -16,7 +16,9 @@ namespace GameofLife
         // The universe array
         bool[,] universe = new bool[10, 10];
         bool[,] sratchpad = new bool[10, 10];
-        
+
+        //added an instance of random
+        Random rand = new Random();
 
         // Drawing colors
         Color gridColor = Color.Black;
@@ -526,7 +528,7 @@ namespace GameofLife
 
         private void randomToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Random rand = new Random();
+            
             for (int i = 0; i < universe.GetLength(1); i++)
             {
                 for(int j = 0; j < universe.GetLength(0); j++)
@@ -556,6 +558,33 @@ namespace GameofLife
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 graphicsPanel1.BackColor = dlg.Color;
+                graphicsPanel1.Invalidate();
+            }
+        }
+
+        private void randomSeedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 dlg = new Form2();
+
+
+            if(DialogResult.OK == dlg.ShowDialog())
+            {
+                for (int i = 0; i < universe.GetLength(1); i++)
+                {
+                    for (int j = 0; j < universe.GetLength(0); j++)
+                    {
+                        int newRandomAliveorDead = rand.Next();
+                        if (newRandomAliveorDead % 2 == 0)
+                        {
+                            universe[j, i] = true;
+                        }
+                        else
+                        {
+                            universe[j, i] = false;
+                        }
+
+                    }
+                }
                 graphicsPanel1.Invalidate();
             }
         }

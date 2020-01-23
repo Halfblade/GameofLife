@@ -74,12 +74,12 @@ namespace GameofLife.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int Setting1 {
+        public int Width {
             get {
-                return ((int)(this["Setting1"]));
+                return ((int)(this["Width"]));
             }
             set {
-                this["Setting1"] = value;
+                this["Width"] = value;
             }
         }
     }
