@@ -21,6 +21,12 @@ namespace GameofLife
         bool[,] universe = new bool[xPosition, yPosition];
         bool[,] sratchpad = new bool[xPosition, yPosition];
 
+
+        //swapping universe type
+        bool finite = true;
+        bool toroidal = false;
+
+
         //added an instance of random
         Random rand = new Random();
 
@@ -244,71 +250,78 @@ namespace GameofLife
         private int CountingNeighbors(int x, int y)
         {
             int count = 0;
-
-            ////finite
-            //for (int i = -1; i < 2; i++)
-            //{
-            //    int xpos = x + i;
-            //    for (int j = -1; j < 2; j++)
-            //    {
-            //        int ypos = y + j;
-            //        // check if out of bounds universe[x,y]
-            //        if ((xpos >= 0 && xpos < universe.GetLength(0))&& (ypos >= 0 && ypos < universe.GetLength(1)))
-            //        {
-            //            // check if its the same universe position [x,y] = [i, j]
-            //            if ( i != 0 || j != 0)
-            //            {
-            //                // check if cell is Alive or Dead
-            //                if (universe[xpos, ypos] == true)
-            //                {
-            //                    count++;
-            //                }
-
-            //            }
-
-            //        }
-                   
-                    
-            //    }
-            //}
-
-
-            for (int i = -1; i < 2; i++)
+            
+            
+            if (finite)
             {
-                int xpos = x + i;
-                for (int j = -1; j < 2; j++)
+                //finite
+                for (int i = -1; i < 2; i++)
                 {
-                    int ypos = y + j;
-                    // if the xpos goes futher than universe set it back to 0
-                    if ( xpos > universe.GetLength(0) - 1)
+                    int xpos = x + i;
+                    for (int j = -1; j < 2; j++)
                     {
-                        xpos = 0;
-                    }
-                    // if the xpos is less than the universe set it too the edge of the universe -1
-                    else if ( xpos < 0)
-                    {
-                        xpos = universe.GetLength(0) - 1;
-                    }
-                    if (ypos > universe.GetLength(1) - 1)
-                    {
-                        ypos = 0; 
-                    }
-                    else if (ypos < 0)
-                    {
-                        ypos = universe.GetLength(1) - 1;
-                    }
-                    // check if its the same universe position [x,y] = [i, j]
-                    if (i != 0 || j != 0)
-                    {
-                        // check if cell is Alive or Dead
-                        if (universe[xpos, ypos] == true)
+                        int ypos = y + j;
+                        // check if out of bounds universe[x,y]
+                        if ((xpos >= 0 && xpos < universe.GetLength(0)) && (ypos >= 0 && ypos < universe.GetLength(1)))
                         {
-                            count++;
+                            // check if its the same universe position [x,y] = [i, j]
+                            if (i != 0 || j != 0)
+                            {
+                                // check if cell is Alive or Dead
+                                if (universe[xpos, ypos] == true)
+                                {
+                                    count++;
+                                }
+
+                            }
+
                         }
 
+
                     }
+                }
+            }
 
 
+           if (toroidal)
+           {
+                for (int i = -1; i < 2; i++)
+                {
+                    int xpos = x + i;
+                    for (int j = -1; j < 2; j++)
+                    {
+                        int ypos = y + j;
+                        // if the xpos goes futher than universe set it back to 0
+                        if (xpos > universe.GetLength(0) - 1)
+                        {
+                            xpos = 0;
+                        }
+                        // if the xpos is less than the universe set it too the edge of the universe -1
+                        else if (xpos < 0)
+                        {
+                            xpos = universe.GetLength(0) - 1;
+                        }
+                        if (ypos > universe.GetLength(1) - 1)
+                        {
+                            ypos = 0;
+                        }
+                        else if (ypos < 0)
+                        {
+                            ypos = universe.GetLength(1) - 1;
+                        }
+                        // check if its the same universe position [x,y] = [i, j]
+                        if (i != 0 || j != 0)
+                        {
+                            // check if cell is Alive or Dead
+                            if (universe[xpos, ypos] == true)
+                            {
+                                count++;
+                            }
+
+                        }
+
+
+                    }
                 }
             }
 
@@ -642,6 +655,18 @@ namespace GameofLife
                 }
                 graphicsPanel1.Invalidate();
             }
+        }
+
+        private void toroidalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            finite = false;
+            toroidal = true;
+        }
+
+        private void finiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            finite = true;
+            toroidal = false;
         }
     }
 }
