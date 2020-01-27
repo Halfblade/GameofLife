@@ -175,6 +175,8 @@ namespace GameofLife
 
                     // Outline the cell with a pen
                     e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+
+                    if (NeighborCountDisplay)
                     e.Graphics.DrawString(neighbors.ToString(), graphicsPanel1.Font, Brushes.Black, cellRect.X, cellRect.Y);
                 }
             }
@@ -252,6 +254,7 @@ namespace GameofLife
 
         private int CountingNeighbors(int x, int y)
         {
+
             int count = 0;
             
             
@@ -328,21 +331,21 @@ namespace GameofLife
                 }
             }
 
-            if (NeighborCountDisplay)
+            
+            
+            int isAlive = 0;
+            for (int yPos = 0; yPos < universe.GetLength(0); yPos++)
             {
-                int isAlive = 0;
-                for (int yPos = 0; yPos < universe.GetLength(0); yPos++)
-                {
-                    for (int xPos = 0; xPos < universe.GetLength(1); xPos++)
+               for (int xPos = 0; xPos < universe.GetLength(1); xPos++)
+               {
+                    if (universe[xPos, yPos] == true)
                     {
-                        if (universe[xPos, yPos] == true)
-                        {
-                            isAlive++;
-                        }
+                        isAlive++;
                     }
-                }
-                toolStripStatusLabel1.Text = "Cells Alive = " + isAlive.ToString();
+               }
             }
+            toolStripStatusLabel1.Text = "Cells Alive = " + isAlive.ToString();
+            
             //if greater than y going up or x going right set pos to =0;
             // if less than y going down or x going left set pos to universe - 1;
             return count;
@@ -702,6 +705,7 @@ namespace GameofLife
             {
                 NeighborCountDisplay = true;
             }
+            graphicsPanel1.Invalidate();
         }
     }
 }
