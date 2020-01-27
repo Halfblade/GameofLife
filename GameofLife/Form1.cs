@@ -655,7 +655,8 @@ namespace GameofLife
                 {
                     for (int j = 0; j < universe.GetLength(0); j++)
                     {
-                        int newRandomAliveorDead = rand.Next();
+                        int newRandomAliveorDead = dlg.Number;
+                        newRandomAliveorDead = rand.Next();
                         if (newRandomAliveorDead % 2 == 0)
                         {
                             universe[j, i] = true;
