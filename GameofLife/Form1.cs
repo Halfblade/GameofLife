@@ -461,7 +461,9 @@ namespace GameofLife
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reload();
-
+            graphicsPanel1.BackColor = Properties.Settings.Default.GraphicsBackPanel;
+            gridColor = Properties.Settings.Default.GraphicsGridColor;
+            cellColor = Properties.Settings.Default.GraphicsCellColor;
 
 
             graphicsPanel1.Invalidate();
