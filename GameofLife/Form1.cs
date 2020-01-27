@@ -13,12 +13,18 @@ namespace GameofLife
 {
     public partial class Form1 : Form
     {
+        //add x and y for saving size and bool
+        static int xPosition = 0;
+        static int yPosition = 0;
+
         // The universe array
-        bool[,] universe = new bool[10, 10];
-        bool[,] sratchpad = new bool[10, 10];
+        bool[,] universe = new bool[xPosition, yPosition];
+        bool[,] sratchpad = new bool[xPosition, yPosition];
 
         //added an instance of random
         Random rand = new Random();
+
+        
 
         // Drawing colors
         Color gridColor = Color.Black;
@@ -42,6 +48,13 @@ namespace GameofLife
             graphicsPanel1.BackColor = Properties.Settings.Default.GraphicsBackPanel;
             gridColor = Properties.Settings.Default.GraphicsGridColor;
             cellColor = Properties.Settings.Default.GraphicsCellColor;
+            xPosition = Properties.Settings.Default.Width;
+            yPosition = Properties.Settings.Default.Height;
+
+            universe = new bool[xPosition, yPosition];
+            sratchpad = new bool[xPosition, yPosition];
+
+
         }
 
         // Calculate the next generation of cells
@@ -232,6 +245,33 @@ namespace GameofLife
         {
             int count = 0;
 
+            ////finite
+            //for (int i = -1; i < 2; i++)
+            //{
+            //    int xpos = x + i;
+            //    for (int j = -1; j < 2; j++)
+            //    {
+            //        int ypos = y + j;
+            //        // check if out of bounds universe[x,y]
+            //        if ((xpos >= 0 && xpos < universe.GetLength(0))&& (ypos >= 0 && ypos < universe.GetLength(1)))
+            //        {
+            //            // check if its the same universe position [x,y] = [i, j]
+            //            if ( i != 0 || j != 0)
+            //            {
+            //                // check if cell is Alive or Dead
+            //                if (universe[xpos, ypos] == true)
+            //                {
+            //                    count++;
+            //                }
+
+            //            }
+
+            //        }
+                   
+                    
+            //    }
+            //}
+
 
             for (int i = -1; i < 2; i++)
             {
@@ -239,23 +279,36 @@ namespace GameofLife
                 for (int j = -1; j < 2; j++)
                 {
                     int ypos = y + j;
-                    // check if out of bounds universe[5,5]
-                    if ((xpos >= 0 && xpos < universe.GetLength(0))&& (ypos >= 0 && ypos < universe.GetLength(1)))
+                    // if the xpos goes futher than universe set it back to 0
+                    if ( xpos > universe.GetLength(0) - 1)
                     {
-                        // check if its the same universe position [x,y] = [i, j]
-                        if ( i != 0 || j != 0)
+                        xpos = 0;
+                    }
+                    // if the xpos is less than the universe set it too the edge of the universe -1
+                    else if ( xpos < 0)
+                    {
+                        xpos = universe.GetLength(0) - 1;
+                    }
+                    if (ypos > universe.GetLength(1) - 1)
+                    {
+                        ypos = 0; 
+                    }
+                    else if (ypos < 0)
+                    {
+                        ypos = universe.GetLength(1) - 1;
+                    }
+                    // check if its the same universe position [x,y] = [i, j]
+                    if (i != 0 || j != 0)
+                    {
+                        // check if cell is Alive or Dead
+                        if (universe[xpos, ypos] == true)
                         {
-                            // check if cell is Alive or Dead
-                            if (universe[xpos, ypos] == true)
-                            {
-                                count++;
-                            }
-
+                            count++;
                         }
 
                     }
-                   
-                    
+
+
                 }
             }
 
@@ -296,18 +349,16 @@ namespace GameofLife
 
             dlg.NumberHeight = universe.GetLength(1);
             dlg.NumberWidth = universe.GetLength(0);
-            int x = 0;
-            int y = 0;
+            
 
             dlg.Number = timer.Interval;
 
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                x = dlg.NumberWidth;
-                y = dlg.NumberHeight;
-                bool[,] newuniverse = new bool[x, y];
-                universe = newuniverse;
-                sratchpad = newuniverse;
+                xPosition = dlg.NumberWidth;
+                yPosition = dlg.NumberHeight;
+                universe = new bool[xPosition, yPosition];
+                sratchpad = new bool[xPosition, yPosition];
 
                 timer.Interval = dlg.Number;
                 
@@ -368,6 +419,9 @@ namespace GameofLife
             Properties.Settings.Default.GraphicsBackPanel = graphicsPanel1.BackColor;
             Properties.Settings.Default.GraphicsGridColor = gridColor;
             Properties.Settings.Default.GraphicsCellColor = cellColor;
+
+            Properties.Settings.Default.Height = yPosition;
+            Properties.Settings.Default.Width = xPosition;
             Properties.Settings.Default.Save();
         }
 
@@ -377,7 +431,8 @@ namespace GameofLife
             graphicsPanel1.BackColor = Properties.Settings.Default.GraphicsBackPanel;
             gridColor = Properties.Settings.Default.GraphicsGridColor;
             cellColor = Properties.Settings.Default.GraphicsCellColor;
-            
+
+            graphicsPanel1.Invalidate();
             
         }
 
