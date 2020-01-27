@@ -452,7 +452,10 @@ namespace GameofLife
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reload();
-            
+
+
+
+            graphicsPanel1.Invalidate();
             
         }
 
@@ -667,6 +670,20 @@ namespace GameofLife
         {
             finite = true;
             toroidal = false;
+        }
+
+        private void gridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (gridColor == graphicsPanel1.BackColor)
+            {
+                gridColor = Properties.Settings.Default.GraphicsGridColor;
+                
+            }
+            else
+            {
+                gridColor = graphicsPanel1.BackColor;
+            }
+            graphicsPanel1.Invalidate();
         }
     }
 }
