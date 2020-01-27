@@ -26,6 +26,9 @@ namespace GameofLife
         bool finite = true;
         bool toroidal = false;
 
+        //toggle neighbor count display
+        bool NeighborCountDisplay = true;
+
 
         //added an instance of random
         Random rand = new Random();
@@ -325,18 +328,21 @@ namespace GameofLife
                 }
             }
 
-            int isAlive = 0;
-            for (int yPos = 0; yPos < universe.GetLength(0); yPos++)
+            if (NeighborCountDisplay)
             {
-                for (int xPos = 0; xPos < universe.GetLength(1); xPos++)
+                int isAlive = 0;
+                for (int yPos = 0; yPos < universe.GetLength(0); yPos++)
                 {
-                    if (universe[xPos, yPos] == true)
+                    for (int xPos = 0; xPos < universe.GetLength(1); xPos++)
                     {
-                        isAlive++;
+                        if (universe[xPos, yPos] == true)
+                        {
+                            isAlive++;
+                        }
                     }
                 }
+                toolStripStatusLabel1.Text = "Cells Alive = " + isAlive.ToString();
             }
-            toolStripStatusLabel1.Text = "Cells Alive = " + isAlive.ToString();
             //if greater than y going up or x going right set pos to =0;
             // if less than y going down or x going left set pos to universe - 1;
             return count;
@@ -684,6 +690,18 @@ namespace GameofLife
                 gridColor = graphicsPanel1.BackColor;
             }
             graphicsPanel1.Invalidate();
+        }
+
+        private void cellsAliveDisplayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (NeighborCountDisplay == true)
+            {
+                NeighborCountDisplay = false;
+            }
+            else
+            {
+                NeighborCountDisplay = true;
+            }
         }
     }
 }
