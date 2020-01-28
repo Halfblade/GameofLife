@@ -334,9 +334,9 @@ namespace GameofLife
             
             
             int isAlive = 0;
-            for (int yPos = 0; yPos < universe.GetLength(0); yPos++)
+            for (int yPos = 0; yPos < universe.GetLength(1); yPos++)
             {
-               for (int xPos = 0; xPos < universe.GetLength(1); xPos++)
+               for (int xPos = 0; xPos < universe.GetLength(0); xPos++)
                {
                     if (universe[xPos, yPos] == true)
                     {
@@ -546,7 +546,7 @@ namespace GameofLife
                     // and should be ignored.
                     if (row.Contains('!'))
                     {
-
+                        continue;
                     }
                     // If the row is not a comment then it is a row of cells.
                     // Increment the maxHeight variable for each row read.
@@ -579,7 +579,7 @@ namespace GameofLife
                     // it is a comment and should be ignored.
                     if (row.Contains('!'))
                     {
-
+                        continue;
                     }
                     // If the row is not a comment then 
                     // it is a row of cells and needs to be iterated through.
